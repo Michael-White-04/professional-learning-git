@@ -18,6 +18,8 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Step 2: Update HTML
       - name: Update HTML
@@ -37,4 +39,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html README.md
           git commit -m "Workflow: Updated HTML and README for ${{ github.actor }}" || echo "No changes to commit"
+          git pull --rebase origin main
           git push origin main
+
